@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="exview_has_ex">%1$s threw %2$s</string>
+    <string name="exview_list_title">Threw in %s</string>
+    <string name="exview_notification_message">Click for more details</string>
+    <string name="exview_share_ex">Share info</string>
+    <string name="exview_share_with">Share with…</string>
+    <string name="exview_display_activity_label">Threw</string>
+    <string name="exview_delete">Delete</string>
+    <string name="exview_delete_all">Delete all</string>
+    <string name="exview_delete_all_leaks_title">Are you sure you want to delete all threw?</string>
+    <string name="exview_could_not_save_title">Could not save result.</string>
+    <string name="exview_could_not_save_text">ExView was unable to save the analysis result.
+    </string>
+</resources>

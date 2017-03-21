@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ExView</string>
+    <string name="catch_exception">Catch an Exception</string>
+</resources>
