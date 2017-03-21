@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-final class DisplayLeakAdapter extends BaseAdapter {
+final class ExViewAdapter extends BaseAdapter {
     private static final int TOP_ROW = 0;
     private static final int NORMAL_ROW = 1;
 

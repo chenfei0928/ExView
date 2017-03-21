@@ -6,7 +6,7 @@
         android:supportsRtl="true">
 
         <activity
-            android:name=".internal.DisplayLeakActivity"
+            android:name=".internal.ExViewActivity"
             android:enabled="true"
             android:icon="@drawable/exview_icon"
             android:label="@string/exview_display_activity_label"

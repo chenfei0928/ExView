@@ -6,7 +6,7 @@ import android.os.SystemClock;
 
 import com.chenfei.exview.internal.CanaryLog;
 import com.chenfei.exview.internal.DirectoryProvider;
-import com.chenfei.exview.internal.DisplayLeakActivity;
+import com.chenfei.exview.internal.ExViewActivity;
 import com.chenfei.exview.internal.ExViewInternals;
 import com.chenfei.exview.internal.ThrowableInfo;
 
@@ -69,7 +69,7 @@ public class ExAnalysis {
 
 
         if (resultSaved) {
-            pendingIntent = DisplayLeakActivity.createPendingIntent(sContext, resultFile.getName());
+            pendingIntent = ExViewActivity.createPendingIntent(sContext, resultFile.getName());
 
             contentTitle = sContext.getString(R.string.exview_has_ex, tag, t.getMessage());
             contentText = sContext.getString(R.string.exview_notification_message);

@@ -14,6 +14,7 @@ public class ExcludeRules {
     private static final Map<String, Pair<String, String>> packageName = new HashMap<>();
 
     static {
+        exclude("dalvik.system.", "SystemApi", "this is Android System api.");
         exclude("com.android.", "SystemApi", "this is Android System api.");
         exclude("android.", "SystemApi", "this is Android System api.");
         exclude("java.", "SystemApi", "this is Android System api.");

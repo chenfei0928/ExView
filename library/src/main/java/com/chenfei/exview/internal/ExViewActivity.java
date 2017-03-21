@@ -42,7 +42,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.chenfei.exview.internal.ExViewInternals.newSingleThreadExecutor;
 
-public final class DisplayLeakActivity extends Activity {
+public final class ExViewActivity extends Activity {
 
     private static final String SHOW_LEAK_EXTRA = "show_latest";
 
@@ -51,7 +51,7 @@ public final class DisplayLeakActivity extends Activity {
     }
 
     public static PendingIntent createPendingIntent(Context context, String referenceKey) {
-        Intent intent = new Intent(context, DisplayLeakActivity.class);
+        Intent intent = new Intent(context, ExViewActivity.class);
         intent.putExtra(SHOW_LEAK_EXTRA, referenceKey);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         return PendingIntent.getActivity(context, 1, intent, FLAG_UPDATE_CURRENT);
@@ -207,11 +207,11 @@ public final class DisplayLeakActivity extends Activity {
         failureView.setVisibility(GONE);
 
         if (visibleLeak != null) {
-            final DisplayLeakAdapter adapter;
-            if (listAdapter instanceof DisplayLeakAdapter) {
-                adapter = (DisplayLeakAdapter) listAdapter;
+            final ExViewAdapter adapter;
+            if (listAdapter instanceof ExViewAdapter) {
+                adapter = (ExViewAdapter) listAdapter;
             } else {
-                adapter = new DisplayLeakAdapter();
+                adapter = new ExViewAdapter();
                 listView.setAdapter(adapter);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -252,7 +252,7 @@ public final class DisplayLeakActivity extends Activity {
                 actionButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new AlertDialog.Builder(DisplayLeakActivity.this).setIcon(
+                        new AlertDialog.Builder(ExViewActivity.this).setIcon(
                                 android.R.drawable.ic_dialog_alert)
                                 .setTitle(R.string.exview_delete_all)
                                 .setMessage(R.string.exview_delete_all_leaks_title)
@@ -303,7 +303,7 @@ public final class DisplayLeakActivity extends Activity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = LayoutInflater.from(DisplayLeakActivity.this)
+                convertView = LayoutInflater.from(ExViewActivity.this)
                         .inflate(R.layout.exview_leak_row, parent, false);
             }
             TextView titleView = (TextView) convertView.findViewById(R.id.exview_row_text);
@@ -317,7 +317,7 @@ public final class DisplayLeakActivity extends Activity {
             title = index + title;
             titleView.setText(title);
             String time =
-                    DateUtils.formatDateTime(DisplayLeakActivity.this, leak.getFile().lastModified(),
+                    DateUtils.formatDateTime(ExViewActivity.this, leak.getFile().lastModified(),
                             FORMAT_SHOW_TIME | FORMAT_SHOW_DATE);
             timeView.setText(time);
             return convertView;
@@ -330,7 +330,7 @@ public final class DisplayLeakActivity extends Activity {
 
         static final Executor backgroundExecutor = newSingleThreadExecutor("LoadLeaks");
 
-        static void load(DisplayLeakActivity activity, DirectoryProvider leakDirectoryProvider) {
+        static void load(ExViewActivity activity, DirectoryProvider leakDirectoryProvider) {
             LoadLeaks loadLeaks = new LoadLeaks(activity, leakDirectoryProvider);
             inFlight.add(loadLeaks);
             backgroundExecutor.execute(loadLeaks);
@@ -343,11 +343,11 @@ public final class DisplayLeakActivity extends Activity {
             inFlight.clear();
         }
 
-        DisplayLeakActivity activityOrNull;
+        ExViewActivity activityOrNull;
         private final DirectoryProvider leakDirectoryProvider;
         private final Handler mainHandler;
 
-        LoadLeaks(DisplayLeakActivity activity, DirectoryProvider leakDirectoryProvider) {
+        LoadLeaks(ExViewActivity activity, DirectoryProvider leakDirectoryProvider) {
             this.activityOrNull = activity;
             this.leakDirectoryProvider = leakDirectoryProvider;
             mainHandler = new Handler(Looper.getMainLooper());
